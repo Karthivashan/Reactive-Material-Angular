@@ -1,0 +1,61 @@
+
+<h1 mat-dialog-title>App Products</h1>
+<div mat-dialog-content>
+    <form [formGroup]="detailForm" class="form-container">
+        <mat-form-field appearance="outline">
+            <mat-label>Product Name</mat-label>
+            <input matInput placeholder="Add Product Name" formControlName="productName">
+            <mat-error *ngIf="this.addForm.productName.hasError('required')">productName is Required</mat-error>
+            <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Product Categories</mat-label>
+            <mat-select placeholder="Add Product Categories" formControlName="category">
+                <mat-option value="Fruits">Fruits</mat-option>
+                <mat-option value="Vegitables">Vegitables</mat-option>
+                <mat-option value="Electronics">Electronics</mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.addForm.category.hasError('required')">Category is Required</mat-error>
+            <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label>Choose the date</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="this.addForm.date.hasError('required')">Date is Required</mat-error>
+        </mat-form-field>
+
+        <div>Products</div>
+
+
+        <mat-radio-group class="example-radio-group" aria-label="Select an option" formControlName="fressness">
+            <mat-radio-button class="example-radio-button" *ngFor="let fresh of freshlist" [value]="fresh">{{fresh}}</mat-radio-button>
+            <!-- <mat-error *ngIf="this.addForm.fressness.hasError('required')">productName is Required</mat-error> -->
+        </mat-radio-group>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Price" formControlName="price">
+            <mat-error *ngIf="this.addForm.price.hasError('required')">Price is Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Comment</mat-label>
+            <textarea matInput placeholder="Leave a comment" formControlName="comment"></textarea>
+            <mat-error *ngIf="this.addForm.comment.hasError('required')">Comment is Required</mat-error>
+        </mat-form-field>
+
+
+        <div mat-dialog-action [align]="'end'">
+            <button mat-flat-button color="warn" mat-dialog-close>Close</button>
+            <button mat-flat-button color="primary" (click)="addProducts()">Save</button>
+        </div>
+    </form>
+
+
+</div>
